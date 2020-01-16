@@ -6,9 +6,14 @@ import (
 	"sync"
 )
 
-func printStatusCode(pid int, url string) {
+func printStatusCode(url string) {
+	res := getHttpResponse(url)
+	fmt.Printf("[%s] Code: %d\n", url, res.StatusCode)
+}
+
+func getHttpResponse(url string) *http.Response {
 	res, _ := http.Get(url)
-	fmt.Printf("%d: %d\n", pid, res.StatusCode)
+	return res
 }
 
 func main() {
@@ -22,9 +27,10 @@ func main() {
 	for i, url := range urls {
 		wg.Add(1)
 		go func(pid int, url string) {
-			printStatusCode(pid, url)
+			printStatusCode(url)
 			wg.Done()
 		}(i, url)
 	}
 	wg.Wait()
 }
+
