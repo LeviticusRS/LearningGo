@@ -7,11 +7,11 @@ import (
 )
 
 func printStatusCode(url string) {
-	res := getHttpResponse(url)
+	res := getHTTPResponse(url)
 	fmt.Printf("[%s] Code: %d\n", url, res.StatusCode)
 }
 
-func getHttpResponse(url string) *http.Response {
+func getHTTPResponse(url string) *http.Response {
 	res, _ := http.Get(url)
 	return res
 }
