@@ -16,7 +16,7 @@ func getHTTPResponse(url string) *http.Response {
 	return res
 }
 
-func main() {
+func mai1n() {
 	var wg sync.WaitGroup
 	urls := [...]string{
 		"https://google.com",
